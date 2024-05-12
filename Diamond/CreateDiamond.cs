@@ -12,9 +12,8 @@ namespace Diamond
 
             List<char> letters = new List<char>([..previousLetters, maxLetter, ..previousLetters.Reverse()]);
 
-            string row = new ('_', letters.Count);
 
-            return letters.Select(x => row).ToArray();
+            return letters.Select(letter => new string(letter, letters.Count)).ToArray();
         }
     }
 }

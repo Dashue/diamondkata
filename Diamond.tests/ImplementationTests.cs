@@ -19,5 +19,12 @@ namespace Diamond.tests
 
             Assert.All(rowLengths, x=> { Assert.Equal(numberOfRows, x); });
         }
+
+        [Fact]
+        public void All_rows_contain_a_letter()
+        {
+            var diamond = Diamond.Create('C');
+            Assert.All(diamond, row => { Assert.Contains(row, item => char.IsLetter(item)); });
+        }
     }
 }
