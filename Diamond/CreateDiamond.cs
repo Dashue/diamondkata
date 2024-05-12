@@ -10,16 +10,16 @@ namespace Diamond
             int index = _letters.IndexOf(maxLetter);
             char[] previousLetters = _letters.GetRange(0, index).ToArray();
 
-            var middleColumnIndex = previousLetters.Length / 2 + 1;
+            var numberOfColumns = previousLetters.Length * 2 + 1;
 
             var rows = new LinkedList<string>();
-            rows.AddFirst($"{maxLetter}{new string('_', previousLetters.Length+1)}{maxLetter}");
+            rows.AddFirst($"{maxLetter}{new string('_', numberOfColumns > 2 ? numberOfColumns-2 :0)}{maxLetter}");
 
 
             var i = 1;
             foreach (var letter in previousLetters.Reverse().ToArray())
             {
-                var middleSpaces = middleColumnIndex - i;
+                var middleSpaces = numberOfColumns - (i*2)-2;
                 string row;
 
                 if (middleSpaces > 0)

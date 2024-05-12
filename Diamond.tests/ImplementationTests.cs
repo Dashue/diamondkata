@@ -13,7 +13,7 @@ namespace Diamond.tests
         [Fact]
         public void Creates_square()
         {
-            var diamond = Diamond.Create('C');
+            var diamond = Diamond.Create('E');
             var numberOfRows = diamond.Length;
             var rowLengths = diamond.Select(x => x.Length);
 
@@ -23,7 +23,7 @@ namespace Diamond.tests
         [Fact]
         public void All_rows_contain_a_letter()
         {
-            var diamond = Diamond.Create('C');
+            var diamond = Diamond.Create('E');
             Assert.All(diamond, row => { Assert.Contains(row, item => char.IsLetter(item)); });
         }
 
@@ -42,7 +42,7 @@ namespace Diamond.tests
         [Fact]
         public void Rows_are_horizontally_symmetrical()
         {
-            var diamond = Diamond.Create('C');
+            var diamond = Diamond.Create('E');
             var numberOfRows = diamond.Length;
             var elementsPriorAndAfter = (numberOfRows -1) / 2;
             var elementsTotake = elementsPriorAndAfter + 1;
@@ -56,7 +56,7 @@ namespace Diamond.tests
         [Fact]
         public void Rows_are_vertically_symmetrical()
         {
-            var diamond = Diamond.Create('C');
+            var diamond = Diamond.Create('E');
             var numberOfRows = diamond.Length;
             var rowLength = numberOfRows;
 
