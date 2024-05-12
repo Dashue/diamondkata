@@ -26,5 +26,17 @@ namespace Diamond.tests
             var diamond = Diamond.Create('C');
             Assert.All(diamond, row => { Assert.Contains(row, item => char.IsLetter(item)); });
         }
+
+        [Fact]
+        public void Calculates_right_position_for_letter()
+        {
+            var diamond = Diamond.Create('C');
+            var numberOfRows = diamond.Length;
+            var centerColumnIndex = (numberOfRows - 1)/2;
+
+            Assert.Equal(centerColumnIndex, diamond[0].IndexOf("A"));
+            Assert.Equal(centerColumnIndex-1, diamond[1].IndexOf("B"));
+            Assert.Equal(centerColumnIndex-2, diamond[2].IndexOf("C"));
+        }
     }
 }

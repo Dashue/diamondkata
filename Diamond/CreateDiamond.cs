@@ -10,10 +10,34 @@ namespace Diamond
             int index = _letters.IndexOf(maxLetter);
             char[] previousLetters = _letters.GetRange(0, index).ToArray();
 
-            List<char> letters = new List<char>([..previousLetters, maxLetter, ..previousLetters.Reverse()]);
+            var middleColumnIndex = previousLetters.Length / 2 + 1;
+
+            var rows = new LinkedList<string>();
+            rows.AddFirst($"{maxLetter}{new string('_', previousLetters.Length+1)}{maxLetter}");
 
 
-            return letters.Select(letter => new string(letter, letters.Count)).ToArray();
+            var i = 1;
+            foreach (var letter in previousLetters.Reverse().ToArray())
+            {
+                var middleSpaces = middleColumnIndex - i;
+                string row;
+
+                if (middleSpaces > 0)
+                {
+                    row = $"{new string('_', i)}{letter}{new string('_', middleSpaces)}{letter}{new string('_', i)}";
+                }
+                else
+                {
+                    row = $"{new string('_', i)}{letter}{new string('_', i)}";
+                }
+
+                rows.AddFirst(row);
+                rows.AddLast(row);
+                i++;
+            }               
+
+
+            return rows.ToArray();
         }
     }
 }
