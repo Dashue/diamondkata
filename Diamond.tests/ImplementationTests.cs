@@ -9,5 +9,15 @@ namespace Diamond.tests
             Assert.Equal(3, Diamond.Create('B').Length);
             Assert.Equal(5, Diamond.Create('C').Length);
         }
+
+        [Fact]
+        public void Creates_square()
+        {
+            var diamond = Diamond.Create('C');
+            var numberOfRows = diamond.Length;
+            var rowLengths = diamond.Select(x => x.Length);
+
+            Assert.All(rowLengths, x=> { Assert.Equal(numberOfRows, x); });
+        }
     }
 }
