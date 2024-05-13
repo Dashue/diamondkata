@@ -13,28 +13,37 @@ namespace Diamond
             var numberOfColumns = previousLetters.Length * 2 + 1;
 
             var rows = new LinkedList<string>();
-            rows.AddFirst($"{maxLetter}{new string('_', numberOfColumns > 2 ? numberOfColumns-2 :0)}{maxLetter}");
+
+            /* Start by adding Middle Row */
+            rows.AddFirst($"{maxLetter}{new string('_', numberOfColumns > 2 ? numberOfColumns - 2 : 0)}{maxLetter}");
 
 
-            var i = 1;
+            var offsetFromMiddleRow = 1;
+            /* Populate diamond outwards from Middle Row one row at a time, increasing level of indentation for each row */
             foreach (var letter in previousLetters.Reverse().ToArray())
             {
-                var middleSpaces = numberOfColumns - (i*2)-2;
-                string row;
+                var numberOfSpacesAtStart = offsetFromMiddleRow;
+                var numberOfSpacesAtEnd = offsetFromMiddleRow;
+                var numberOfLettersPerRow = 2;
 
+                /* Calculate number of spaces in the center of the string */
+                var middleSpaces = numberOfColumns - numberOfSpacesAtStart - numberOfSpacesAtEnd - numberOfLettersPerRow;
+
+                string row;
                 if (middleSpaces > 0)
                 {
-                    row = $"{new string('_', i)}{letter}{new string('_', middleSpaces)}{letter}{new string('_', i)}";
+                    row = $"{new string('_', numberOfSpacesAtStart)}{letter}{new string('_', middleSpaces)}{letter}{new string('_', numberOfSpacesAtEnd)}";
                 }
                 else
                 {
-                    row = $"{new string('_', i)}{letter}{new string('_', i)}";
+                    row = $"{new string('_', numberOfSpacesAtStart)}{letter}{new string('_', numberOfSpacesAtEnd)}";
                 }
 
                 rows.AddFirst(row);
                 rows.AddLast(row);
-                i++;
-            }               
+
+                offsetFromMiddleRow++;
+            }
 
 
             return rows.ToArray();
