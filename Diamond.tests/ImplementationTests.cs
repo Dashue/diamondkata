@@ -73,5 +73,13 @@ namespace Diamond.tests
                 Assert.Equal(leftPart, new String(rightPart.Reverse().ToArray()));
             });
         }
+
+        [Fact]
+        public void No_previous_letters_returns_the_letter()
+        {
+            var diamond = Diamond.Create('A');
+
+            Assert.Equal(["A"], diamond);
+        }
     }
 }

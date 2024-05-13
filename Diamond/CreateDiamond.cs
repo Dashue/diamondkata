@@ -10,6 +10,11 @@ namespace Diamond
             int index = _letters.IndexOf(maxLetter);
             char[] previousLetters = _letters.GetRange(0, index).ToArray();
 
+            if (previousLetters.Length == 0)
+            {
+                return [$"{maxLetter}"];
+            }
+
             var numberOfColumns = previousLetters.Length * 2 + 1;
 
             var rows = new LinkedList<string>();
